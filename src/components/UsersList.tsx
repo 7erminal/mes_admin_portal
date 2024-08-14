@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { User, UserBusiness } from "../resources/types/applicationTypes";
+import { UserBusiness } from "../resources/types/applicationTypes";
 import UserBusinessInformation from "./UserBusinessInformation";
 
 type Props = {

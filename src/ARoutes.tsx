@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Route, Routes } from "react-router-dom";
 import { AnimatePresence } from "framer-motion"; 
 
 import HomePage from "./pages/HomePage";
@@ -8,8 +8,6 @@ import Loading from "./components/widgets/Loading";
 import ApplicationContext from "./resources/ApplicationContext";
 
 const ARoutes: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [dataLoaded, setDataLoaded] = useState(false)
   const applicationContext = useContext(ApplicationContext)
 
   return <AnimatePresence>
