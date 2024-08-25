@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Col, ListGroup, Modal, Row } from "react-bootstrap";
-import { UserBusiness } from "../resources/types/applicationTypes";
+import { DirectorIDs, UserBusiness } from "../resources/types/applicationTypes";
 // @ts-ignore
 import Api from "../apis/apis"
 // @ts-ignore
 import { ROUTES } from "../apis/endpoints.js"
 import ApplicationContext from "../resources/ApplicationContext";
+import ImagesModal from "./widgets/ImagesModal.js";
 
 type Props = {
     show: boolean
@@ -15,6 +16,12 @@ type Props = {
 
 const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
     const applicationContext = useContext(ApplicationContext)
+
+    const [showImages, setShowImages] = useState(false);
+    const [images, setImages] = useState<Array<DirectorIDs>>();
+
+    const handleImagesModalClose = () => setShowImages(false);
+    const handleImagesModalShow = () => setShowImages(true);
     
     const authorize = async (command: string)=>{
         const params = {
@@ -42,7 +49,51 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
           handleClose()
     }
 
-    return <Modal show={show} onHide={handleClose} size="lg">
+    const downloadFile= async (fileType: string, requestId: number)=> {
+        var params = {
+            "fileType": fileType,
+            "requestId": requestId
+        }
+        await new Api().downloadFile(params, ROUTES.downloadFileUrl).then((response: any)=>{
+            // setLoading(false)
+            console.log("Response is ...")
+            console.log(response)
+            if(response.status==200){
+                console.log("RESPONSE::: ")
+                console.log(response.data)                   
+            } else {
+
+            }
+          }).catch((error: any)=> {
+            console.log("Error returned is ... ")
+            console.log(error)
+          })
+    }
+
+    const viewDirectorIDImages = async (businessDetailId_: number)=>{
+        var params = {
+            "id": businessDetailId_
+        }
+        await new Api().post_(params, ROUTES.viewDirectorIdsUrl).then((response: any)=>{
+            // setLoading(false)
+            console.log("Response is ...")
+            console.log(response)
+            if(response.status==200){
+                console.log("RESPONSE::: ")
+                console.log(response.data.Result)
+                console.log(response.data)
+                setImages(response.data.Result)    
+                handleImagesModalShow()               
+            } else {
+
+            }
+          }).catch((error: any)=> {
+            console.log("Error returned is ... ")
+            console.log(error)
+          })
+    }
+
+    return <><Modal show={show} onHide={handleClose} size="lg">
     <Modal.Header closeButton>
       <Modal.Title>Details for {user?.created_by.full_name}</Modal.Title>
     </Modal.Header>
@@ -96,6 +147,20 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
                     <b>{user?.created_at}</b>
                 </div>
             </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <button className="btn-block primary-button" type="button" onClick={()=>downloadFile('CERT_OF_INCORPORATION', user!.businessDetailId)}>View Certificate of Incorporation</button>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <button className="btn-block primary-button" type="button" onClick={()=>downloadFile('CERT_TO_COMMENCE', user!.businessDetailId)}>View Certificate to commence business</button>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <button className="btn-block primary-button" type="button" onClick={()=>downloadFile('CERT_COMPANY_PROFILE', user!.businessDetailId)}>View Certificate for the company's profile</button>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <div className="ms-2 me-auto">
+                    <div className="fw-bold"><a href="#" className="default-black-link" onClick={()=>viewDirectorIDImages(user!.businessDetailId)}>View director ID images</a></div>
+                </div>
+            </ListGroup.Item>
         </ListGroup>
         <Row className="my-4">
             <Col>
@@ -104,9 +169,14 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
             <Col>
                 <button type="button" className="btn btn-fill btn-danger" onClick={()=>authorize("REJECT")}>Decline</button>
             </Col>
+            <Col>
+                <button type="button" className="btn btn-fill btn-secondary" onClick={()=>handleClose}>Cancel</button>
+            </Col>
         </Row>
     </Modal.Body>
   </Modal>
+  <ImagesModal show={showImages} handleClose={handleImagesModalClose} images={images} />
+  </>
 }
 
 export default UserBusinessInformation

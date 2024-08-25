@@ -65,3 +65,9 @@ export type UserBusiness = {
     updated_at: string
     created_by: User
 }
+
+export type DirectorIDs = {
+    businessDetailId: number
+    directorIds: string
+    directorIdsId: number
+}

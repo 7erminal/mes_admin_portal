@@ -57,6 +57,7 @@ const UsersList: React.FC<Props> = ({title, users, filter})=>{
               <tbody>
                 {
                     users?.filter((ui: UserBusiness)=>filter==2 || ui.created_by.is_verified == filter).map((ui: UserBusiness, i: number)=>{
+                      console.log("is verified is "+ui.created_by.is_verified)
                         return <tr key={i} className="user-business-tile" onClick={()=>viewUser(ui)}>
                         <td>
                           {ui.businessDetailId}

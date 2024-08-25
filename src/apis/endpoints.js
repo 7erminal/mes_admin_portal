@@ -1,8 +1,8 @@
 // const authenticationBaseUrl = `http://localhost:8080`;
 // const customerBaseUrl = `http://localhost:8083`;
+// const businessBaseUrl = `http://127.0.0.1:8000`
 const authenticationBaseUrl = `http://15.236.128.186:8010`;
 const customerBaseUrl = `http://15.236.128.186:8013`;
-// const businessBaseUrl = `http://127.0.0.1:8000`
 const businessBaseUrl = `http://15.236.128.186:8011`
 
 const authenticationApiEndpoints = `${authenticationBaseUrl}/v1`;
@@ -26,7 +26,7 @@ const authenticateOAuth = `${authenticationApiEndpoints}/oauth`;
 const onboardBaseUrl = `${businessBaseUrl}/api`
 
 export const ROUTES = {
-    
+    baseUrlRoot: businessBaseUrl,
    ///////// THIRD PARTY ENDPOINTS /////
    // CUSTOMER PORTAL
 //    customerPortal: customerPortalUrl,
@@ -45,7 +45,11 @@ export const ROUTES = {
     // GET BUSINESS DETAILS
     getBusinessDetails: `${onboardBaseUrl}/onboard/get-business-details/`,
     // AUTHORIZE OR REJECT
-    authorizeBusinessDetails: `${onboardBaseUrl}/onboard/authorize-business/`
+    authorizeBusinessDetails: `${onboardBaseUrl}/onboard/authorize-business/`,
+    // DOWNLOAD FILE
+    downloadFileUrl: `${onboardBaseUrl}/onboard/download-file/`,
+    // VIEW DIRECTOR IDS
+    viewDirectorIdsUrl: `${onboardBaseUrl}/onboard/view-director-images/`,
 }
 
 

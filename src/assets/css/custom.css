@@ -1,3 +1,66 @@
 .user-business-tile:hover{
     cursor: pointer;
 }
+
+.primary-button{
+    background-color: transparent;
+    border: 2px rgb(16, 1, 60) solid;
+    border-radius: 1px;
+    transition: 0.3s ease-out;
+    color: rgb(16, 1, 60);
+}
+
+.primary-button:hover{
+    background-color: rgb(16, 1, 60);
+    border: 2px rgb(16, 1, 60) solid;
+    color: white;
+    transition: 0.1s ease-in;
+}
+
+.inverted-primary-button{
+    background-color: rgb(16, 1, 60);
+    border: 2px rgb(16, 1, 60) solid;
+    border-radius: 1px;
+    transition: 0.3s ease-out;
+    color: white;
+}
+
+.inverted-primary-button:hover{
+    background-color: white;
+    border: 2px rgb(16, 1, 60) solid;
+    color: rgb(16, 1, 60);
+    transition: 0.1s ease-in;
+}
+
+.secondary-button{
+    background-color: #7FFED4;
+    border: none;
+    border-radius: 1px;
+    transition: 0.3s ease-out;
+    color: rgb(16, 1, 60);
+}
+
+.secondary-button:hover{
+    background-color: #4ddaab;
+    border: none;
+    transition: 0.1s ease-in;
+}
+
+.default-black-link{
+    text-decoration: none;
+    color: black;
+}
+
+.default-black-link:active{
+    text-decoration: none;
+    color: black;
+}
+
+.default-black-link:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.btn-next-prev:hover{
+    cursor: pointer;
+}
