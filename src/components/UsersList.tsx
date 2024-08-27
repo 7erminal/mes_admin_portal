@@ -46,6 +46,9 @@ const UsersList: React.FC<Props> = ({title, users, filter})=>{
                   <th>
                     Company name
                   </th>
+                  <th>
+                    Contact number
+                  </th>
                   <th className="text-center">
                     Nature of Business
                   </th>
@@ -67,6 +70,9 @@ const UsersList: React.FC<Props> = ({title, users, filter})=>{
                         </td>
                         <td>
                           {ui.companyName}
+                        </td>
+                        <td>
+                          {ui.created_by.phone_number}
                         </td>
                         <td className="text-center">
                           {ui.natureOfBusiness}

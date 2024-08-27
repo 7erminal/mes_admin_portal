@@ -64,6 +64,7 @@ export type UserBusiness = {
     streetAddress: string
     updated_at: string
     created_by: User
+    userIdFile: string
 }
 
 export type DirectorIDs = {

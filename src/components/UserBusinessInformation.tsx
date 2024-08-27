@@ -7,6 +7,7 @@ import Api from "../apis/apis"
 import { ROUTES } from "../apis/endpoints.js"
 import ApplicationContext from "../resources/ApplicationContext";
 import ImagesModal from "./widgets/ImagesModal.js";
+import ViewImageModal from "./widgets/ViewImageModal.js";
 
 type Props = {
     show: boolean
@@ -18,10 +19,19 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
     const applicationContext = useContext(ApplicationContext)
 
     const [showImages, setShowImages] = useState(false);
+    const [showImage, setShowImage] = useState(false)
     const [images, setImages] = useState<Array<DirectorIDs>>();
+
+    const [imageUrl, setImageUrl] = useState("")
 
     const handleImagesModalClose = () => setShowImages(false);
     const handleImagesModalShow = () => setShowImages(true);
+
+    const handleImageModalClose = () => setShowImage(false);
+    const handleImageModalShow = () => {
+        setImageUrl(`${ROUTES.baseUrlRoot}${user?.userIdFile}`)
+        setShowImage(true);
+    }
     
     const authorize = async (command: string)=>{
         const params = {
@@ -101,6 +111,14 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
         <ListGroup variant="flush">
             <ListGroup.Item className="d-flex justify-content-between align-items-start">
                 <div className="ms-2 me-auto">
+                    <div className="fw-bold">User ID</div>
+                </div>
+                <div>
+                    <img src={`${ROUTES.baseUrlRoot}${user?.userIdFile}`} style={{width: '80px'}} className="user_id_image" onClick={handleImageModalShow} />
+                </div>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <div className="ms-2 me-auto">
                     <div className="fw-bold">Business Name</div>
                 </div>
                 <div>
@@ -176,6 +194,7 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
     </Modal.Body>
   </Modal>
   <ImagesModal show={showImages} handleClose={handleImagesModalClose} images={images} />
+  <ViewImageModal show={showImage} handleClose={handleImageModalClose} imageUrl={imageUrl} />
   </>
 }
 
