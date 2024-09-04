@@ -13,7 +13,10 @@ const UsersList: React.FC<Props> = ({title, users, filter})=>{
     const [showUserDetails, setShowUserDetails] = useState(false)
     const [user, setUser] = useState<UserBusiness>()
 
-    const handleClose = () => setShowUserDetails(false);
+    const handleClose = () => {
+      console.log("Showing user details "+showUserDetails)
+      setShowUserDetails(false);
+    }
 
     const viewUser = (ui: UserBusiness)=>{
         // Redirect the user if verified or not verified

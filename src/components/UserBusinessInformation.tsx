@@ -143,6 +143,14 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
             </ListGroup.Item>
             <ListGroup.Item className="d-flex justify-content-between align-items-start">
                 <div className="ms-2 me-auto">
+                    <div className="fw-bold">Contact Numbers</div>
+                </div>
+                <div>
+                    <b>{user?.created_by.phone_number} \ {user?.alternatePhoneNumber}</b>
+                </div>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                <div className="ms-2 me-auto">
                     <div className="fw-bold">Postal Address</div>
                 </div>
                 <div>
@@ -188,7 +196,7 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
                 <button type="button" className="btn btn-fill btn-danger" onClick={()=>authorize("REJECT")}>Decline</button>
             </Col>
             <Col>
-                <button type="button" className="btn btn-fill btn-secondary" onClick={()=>handleClose}>Cancel</button>
+                <button type="button" className="btn btn-fill btn-secondary" onClick={handleClose}>Cancel</button>
             </Col>
         </Row>
     </Modal.Body>
