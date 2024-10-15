@@ -27,7 +27,6 @@ const authenticateOAuth = `${authenticationApiEndpoints}/oauth`;
 const onboardBaseUrl = `${onboardServiceBaseUrl}/api`
 
 export const ROUTES = {
-    baseUrlRoot: businessBaseUrl,
    ///////// THIRD PARTY ENDPOINTS /////
    // CUSTOMER PORTAL
 //    customerPortal: customerPortalUrl,
