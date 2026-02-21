@@ -31,6 +31,12 @@ export type ApplicationContextProps = {
     setDob: Dispatch<SetStateAction<string>>
     setPhoneNumber: Dispatch<SetStateAction<string>>
     registerUser: (e: React.FormEvent<HTMLFormElement>)=>Promise<boolean>
+    authUsername: string
+    setAuthUsername: Dispatch<SetStateAction<string>>
+    authPassword: string
+    setAuthPassword: Dispatch<SetStateAction<string>>
+    senderId: string
+    setSenderId: Dispatch<SetStateAction<string>>
 }
 
 export type User = {

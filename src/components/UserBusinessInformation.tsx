@@ -8,6 +8,7 @@ import { ROUTES } from "../apis/endpoints.js"
 import ApplicationContext from "../resources/ApplicationContext";
 import ImagesModal from "./widgets/ImagesModal.js";
 import ViewImageModal from "./widgets/ViewImageModal.js";
+import AddCredentialsModal from "./widgets/AddCredentialsModal.js";
 
 type Props = {
     show: boolean
@@ -20,12 +21,16 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
 
     const [showImages, setShowImages] = useState(false);
     const [showImage, setShowImage] = useState(false)
+    const [showAddCreds, setShowAddCreds] = useState(false)
     const [images, setImages] = useState<Array<DirectorIDs>>();
 
     const [imageUrl, setImageUrl] = useState("")
 
     const handleImagesModalClose = () => setShowImages(false);
     const handleImagesModalShow = () => setShowImages(true);
+
+    const handleShowAddCredsModalClose = () => setShowAddCreds(false);
+    const handleShowAddCredsModalShow = () => setShowAddCreds(true);
 
     const handleImageModalClose = () => setShowImage(false);
     const handleImageModalShow = () => {
@@ -36,7 +41,12 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
     const authorize = async (command: string)=>{
         const params = {
             'businessId': user?.businessDetailId.toString(),
-            'command': command
+            'command': command,
+            'username': applicationContext?.username,
+            'password': applicationContext?.password,
+            'senderId': applicationContext?.senderId,
+            // 'authorizedBy': applicationContext?.user?.user_id,
+            'authorizedBy': 1,
         }
 
         await new Api().post_(params, ROUTES.authorizeBusinessDetails).then((response: any)=>{
@@ -46,6 +56,8 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
             if(response.status==200){
                 console.log("RESPONSE::: ")
                 console.log(response.data)
+                applicationContext?.setUsername("")
+                applicationContext?.setPassword("")
                 applicationContext?.getUsers()
                     
             } else {
@@ -190,7 +202,7 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
         </ListGroup>
         <Row className="my-4">
             <Col>
-                <button type="button" className="btn btn-fill btn-primary" onClick={()=>authorize("ACCEPT")}>Authorize</button>
+                <button type="button" className="btn btn-fill btn-primary" onClick={handleShowAddCredsModalShow}>Authorize</button>
             </Col>
             <Col>
                 <button type="button" className="btn btn-fill btn-danger" onClick={()=>authorize("REJECT")}>Decline</button>
@@ -201,6 +213,7 @@ const UserBusinessInformation: React.FC<Props> = ({show, handleClose, user})=>{
         </Row>
     </Modal.Body>
   </Modal>
+  <AddCredentialsModal show={showAddCreds} handleClose={handleShowAddCredsModalClose} onSubmit={()=>authorize("ACCEPT")} />
   <ImagesModal show={showImages} handleClose={handleImagesModalClose} images={images} />
   <ViewImageModal show={showImage} handleClose={handleImageModalClose} imageUrl={imageUrl} />
   </>

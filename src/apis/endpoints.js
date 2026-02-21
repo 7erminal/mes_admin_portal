@@ -1,6 +1,7 @@
 // const authenticationBaseUrl = `http://localhost:8080`;
 // const customerBaseUrl = `http://localhost:8083`;
 // const businessBaseUrl = `http://127.0.0.1:8000`;
+// const onboardServiceBaseUrl = `http://127.0.0.1:8001`;
 const authenticationBaseUrl = `https://authentication-service.mestechgh.com`;
 const customerBaseUrl = `https://customer-management-service.mestechgh.com`;
 const onboardServiceBaseUrl = `https://onboarding-service.mestechgh.com`;

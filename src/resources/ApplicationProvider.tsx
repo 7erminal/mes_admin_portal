@@ -11,6 +11,7 @@ export const ApplicationProvider: React.FC<{children: ReactNode}> = ({children})
   const [loading, setLoading] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [senderId, setSenderId] = useState('')
 
   const [fullname, setFullname] = useState('')
   const [email, setEmail] = useState('')
@@ -25,6 +26,9 @@ export const ApplicationProvider: React.FC<{children: ReactNode}> = ({children})
   const [showErrorMessage, setShowErrorMessage] = useState(false)
 
   const [userBusiness, setUserBusiness] = useState<Array<UserBusiness>>()
+
+  const [authUsername, setAuthUsername] = useState('')
+  const [authPassword, setAuthPassword] = useState('')
 
     // Show Side Nav
   const showSideNav = () =>{
@@ -204,7 +208,13 @@ export const ApplicationProvider: React.FC<{children: ReactNode}> = ({children})
             setDob,
             setPhoneNumber,
             registerUser,
-            setLoading
+            setLoading,
+            authUsername,
+            setAuthUsername,
+            authPassword,
+            setAuthPassword,
+            senderId,
+            setSenderId
           }}>
           {children}
         </ApplicationContext.Provider>

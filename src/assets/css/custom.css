@@ -68,3 +68,67 @@
 .user_id_image:hover{
     cursor: pointer;
 }
+
+.primary-button{
+    background-color: transparent;
+    border: 2px rgb(16, 1, 60) solid;
+    border-radius: 1px;
+    transition: 0.3s ease-out;
+    color: rgb(16, 1, 60);
+    padding: 0.6em 1.2em;
+}
+
+.primary-button:hover{
+    background-color: rgb(16, 1, 60);
+    border: 2px rgb(16, 1, 60) solid;
+    color: white;
+    transition: 0.1s ease-in;
+}
+
+.secondary-button{
+    background-color: #7FFED4;
+    border: none;
+    border-radius: 1px;
+    transition: 0.3s ease-out;
+    color: rgb(16, 1, 60);
+    padding: 0.6em 1.2em;
+}
+
+.secondary-button:hover{
+    background-color: #4ddaab;
+    border: none;
+    transition: 0.1s ease-in;
+}
+
+.inverted-primary-button{
+    background-color: rgb(16, 1, 60);
+    border: 2px rgb(16, 1, 60) solid;
+    border-radius: 1px;
+    transition: 0.3s ease-out;
+    padding: 0.6em 1.2em;
+    color: white;
+}
+
+.inverted-primary-button:hover{
+    background-color: white;
+    border: 2px rgb(16, 1, 60) solid;
+    color: rgb(16, 1, 60);
+    transition: 0.1s ease-in;
+}
+
+.custom-input-login-r{
+    background-color: #F0FBFF;
+    border: 2px solid #EEF7FA;
+    font-size: small;
+    color: #000;
+}
+
+.custom-input-login-r:focus{
+    background-color: #F9FEFF;
+    border: 2px solid #EDF4F6;
+    color: #000;
+}
+
+.credentials-header{
+    color: #000;
+}
