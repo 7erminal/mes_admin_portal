@@ -2,10 +2,10 @@
 // const customerBaseUrl = `http://localhost:8083`;
 // const businessBaseUrl = `http://127.0.0.1:8000`;
 // const onboardServiceBaseUrl = `http://127.0.0.1:8001`;
-const authenticationBaseUrl = `https://authentication-service.mestechgh.com`;
-const customerBaseUrl = `https://customer-management-service.mestechgh.com`;
-const onboardServiceBaseUrl = `https://onboarding-service.mestechgh.com`;
-const bulkUploadBaseUrl = `https://upload-service.mestechgh.com`;
+const authenticationBaseUrl = `https://authentication-service.mestechltd.com`;
+const customerBaseUrl = `https://customer-management-service.mestechltd.com`;
+const onboardServiceBaseUrl = `https://onboarding-service.mestechltd.com`;
+// const bulkUploadBaseUrl = `https://upload-service.mestechltd.com`;
 
 const authenticationApiEndpoints = `${authenticationBaseUrl}/v1`;
 const customerApiEndpoints = `${customerBaseUrl}/v1`;
