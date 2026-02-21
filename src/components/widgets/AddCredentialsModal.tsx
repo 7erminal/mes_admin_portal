@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Col, FloatingLabel, Modal, Row, Form } from "react-bootstrap";
-import { DirectorIDs } from "../../resources/types/applicationTypes";
+import React, { useContext } from "react";
+import { Col, Modal, Row, Form } from "react-bootstrap";
 // @ts-ignore
 import { ROUTES } from "./../../apis/endpoints"
 import ApplicationContext from "../../resources/ApplicationContext";
